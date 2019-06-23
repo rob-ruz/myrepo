@@ -16,6 +16,8 @@ library(purrr)
 library(magrittr)
 library(tibble)
 library(ggplot2)
+library(dplyr)
+library(viridis)
 ```
 
 List all the GOT characters.
@@ -33,16 +35,25 @@ char_table <- got %>%
 char_table
 ```
 Plot the results.
-```{r}
-ggplot(char_table, aes(name, value)) +
-  geom_col(aes(fill = value)) +
-  coord_flip() +
-  ggtitle("Number of aliases of each character") +
-  theme_light()
-
+```{r, echo=FALSE}
+order_vector <- char_table %>% 
+  arrange(value) %>% 
+  .$name
 ```
 
 
+```{r Bar Chart}
+ggplot(char_table, aes(factor(name, level = order_vector), value)) +
+  geom_col(aes(fill = factor(name, level = order_vector))) +
+  ggtitle("Number of aliases of each character") +
+  ylab("Number of aliases") + 
+  xlab("Character Name") +
+  scale_fill_viridis(discrete = TRUE) +
+  theme_light() +
+  theme(legend.position = "none") +
+  coord_flip()
+
+```
 
 
 The end.
