@@ -2,15 +2,20 @@
 title: "GitHub test"
 author: "Roberto Ruz Campos"
 date: "23/6/2019"
-output: github_document
+output:
+  html_document:
+    keep_md: true
 ---
 
 This is my first GitHub experience!
 
 Loaad required libraries
-```{r}
+```{r, message=FALSE}
 library(repurrrsive)
 library(purrr)
+library(magrittr)
+library(tibble)
+library(ggplot2)
 ```
 
 List all the GOT characters.
@@ -18,5 +23,26 @@ List all the GOT characters.
 my_characters <- map_chr(got_chars, "name")
 my_characters
 ```
+
+How many nicknames each character have?
+```{r}
+got <- set_names(got_chars, my_characters)
+char_table <- got %>% 
+  map_dbl(~length(.x[["aliases"]])) %>% 
+  enframe()
+char_table
+```
+Plot the results.
+```{r}
+ggplot(char_table, aes(name, value)) +
+  geom_col(aes(fill = value)) +
+  coord_flip() +
+  ggtitle("Number of aliases of each character") +
+  theme_light()
+
+```
+
+
+
 
 The end.
