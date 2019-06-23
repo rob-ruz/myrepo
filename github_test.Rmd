@@ -3,8 +3,8 @@ title: "GitHub test"
 author: "Roberto Ruz Campos"
 date: "23/6/2019"
 output:
-  html_document:
-    keep_md: true
+  html_document: default
+  github_document: default
 ---
 
 This is my first GitHub experience!
@@ -18,6 +18,7 @@ library(tibble)
 library(ggplot2)
 library(dplyr)
 library(viridis)
+library(ggdark)
 ```
 
 List all the GOT characters.
@@ -32,7 +33,7 @@ got <- set_names(got_chars, my_characters)
 char_table <- got %>% 
   map_dbl(~length(.x[["aliases"]])) %>% 
   enframe()
-char_table
+knitr::kable(char_table)
 ```
 Plot the results.
 ```{r, echo=FALSE}
@@ -42,14 +43,14 @@ order_vector <- char_table %>%
 ```
 
 
-```{r Bar Chart}
+```{r Bar Chart, message=FALSE}
 ggplot(char_table, aes(factor(name, level = order_vector), value)) +
   geom_col(aes(fill = factor(name, level = order_vector))) +
   ggtitle("Number of aliases of each character") +
   ylab("Number of aliases") + 
   xlab("Character Name") +
   scale_fill_viridis(discrete = TRUE) +
-  theme_light() +
+  dark_theme_light() +
   theme(legend.position = "none") +
   coord_flip()
 
