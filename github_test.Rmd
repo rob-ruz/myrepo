@@ -38,14 +38,14 @@ char_table
 ```
 
 Plot the results.
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE}
 order_vector <- char_table %>% 
   arrange(aliases) %>% 
   .$character
 ```
 
 
-```{r Bar Chart, message=FALSE}
+```{r Bar Chart, message=FALSE, fig.align='center'}
 ggplot(char_table, aes(factor(character, level = order_vector), aliases)) +
   geom_col(aes(fill = factor(character, level = order_vector))) +
   ggtitle("Number of aliases of each character") +
