@@ -42,30 +42,30 @@ How many nicknames each character have?
 got <- set_names(got_chars, my_characters)
 char_table <- got %>% 
   map_dbl(~length(.x[["aliases"]])) %>% 
-  enframe()
+  enframe(name = "character", value = "aliases")
 char_table
 ```
 
     ## # A tibble: 30 x 2
-    ##    name               value
-    ##    <chr>              <dbl>
-    ##  1 Theon Greyjoy          4
-    ##  2 Tyrion Lannister      11
-    ##  3 Victarion Greyjoy      1
-    ##  4 Will                   1
-    ##  5 Areo Hotah             1
-    ##  6 Chett                  1
-    ##  7 Cressen                1
-    ##  8 Arianne Martell        1
-    ##  9 Daenerys Targaryen    11
-    ## 10 Davos Seaworth         5
+    ##    character          aliases
+    ##    <chr>                <dbl>
+    ##  1 Theon Greyjoy            4
+    ##  2 Tyrion Lannister        11
+    ##  3 Victarion Greyjoy        1
+    ##  4 Will                     1
+    ##  5 Areo Hotah               1
+    ##  6 Chett                    1
+    ##  7 Cressen                  1
+    ##  8 Arianne Martell          1
+    ##  9 Daenerys Targaryen      11
+    ## 10 Davos Seaworth           5
     ## # ... with 20 more rows
 
 Plot the results.
 
 ``` r
-ggplot(char_table, aes(factor(name, level = order_vector), value)) +
-  geom_col(aes(fill = factor(name, level = order_vector))) +
+ggplot(char_table, aes(factor(character, level = order_vector), aliases)) +
+  geom_col(aes(fill = factor(character, level = order_vector))) +
   ggtitle("Number of aliases of each character") +
   ylab("Number of aliases") + 
   xlab("Character Name") +
@@ -75,6 +75,6 @@ ggplot(char_table, aes(factor(name, level = order_vector), value)) +
   coord_flip()
 ```
 
-![](github_test_files/figure-gfm/Bar%20Chart-1.png)<!-- -->
+<img src="github_test_files/figure-gfm/Bar Chart-1.png" style="display: block; margin: auto;" />
 
 The end.
