@@ -2,7 +2,10 @@
 title: "GitHub test"
 author: "Roberto Ruz Campos"
 date: "23/6/2019"
-output: github_document
+output:
+  html_document:
+    df: paged
+  github_document: default
 ---
 
 This is my first GitHub experience!
@@ -31,8 +34,9 @@ got <- set_names(got_chars, my_characters)
 char_table <- got %>% 
   map_dbl(~length(.x[["aliases"]])) %>% 
   enframe()
-knitr::kable(char_table)
+char_table
 ```
+
 Plot the results.
 ```{r, echo=FALSE}
 order_vector <- char_table %>% 

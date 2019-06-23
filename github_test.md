@@ -43,42 +43,25 @@ got <- set_names(got_chars, my_characters)
 char_table <- got %>% 
   map_dbl(~length(.x[["aliases"]])) %>% 
   enframe()
-knitr::kable(char_table)
+char_table
 ```
 
-| name               | value |
-| :----------------- | ----: |
-| Theon Greyjoy      |     4 |
-| Tyrion Lannister   |    11 |
-| Victarion Greyjoy  |     1 |
-| Will               |     1 |
-| Areo Hotah         |     1 |
-| Chett              |     1 |
-| Cressen            |     1 |
-| Arianne Martell    |     1 |
-| Daenerys Targaryen |    11 |
-| Davos Seaworth     |     5 |
-| Arya Stark         |    16 |
-| Arys Oakheart      |     1 |
-| Asha Greyjoy       |     2 |
-| Barristan Selmy    |     5 |
-| Varamyr            |     3 |
-| Brandon Stark      |     3 |
-| Brienne of Tarth   |     3 |
-| Catelyn Stark      |     5 |
-| Cersei Lannister   |     0 |
-| Eddard Stark       |     3 |
-| Jaime Lannister    |     4 |
-| Jon Connington     |     1 |
-| Jon Snow           |     8 |
-| Aeron Greyjoy      |     2 |
-| Kevan Lannister    |     1 |
-| Melisandre         |     5 |
-| Merrett Frey       |     1 |
-| Quentyn Martell    |     4 |
-| Samwell Tarly      |     7 |
-| Sansa Stark        |     3 |
-| Plot the results.  |       |
+    ## # A tibble: 30 x 2
+    ##    name               value
+    ##    <chr>              <dbl>
+    ##  1 Theon Greyjoy          4
+    ##  2 Tyrion Lannister      11
+    ##  3 Victarion Greyjoy      1
+    ##  4 Will                   1
+    ##  5 Areo Hotah             1
+    ##  6 Chett                  1
+    ##  7 Cressen                1
+    ##  8 Arianne Martell        1
+    ##  9 Daenerys Targaryen    11
+    ## 10 Davos Seaworth         5
+    ## # ... with 20 more rows
+
+Plot the results.
 
 ``` r
 ggplot(char_table, aes(factor(name, level = order_vector), value)) +
