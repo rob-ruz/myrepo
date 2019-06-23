@@ -17,6 +17,8 @@ library(purrr)
 library(magrittr)
 library(tibble)
 library(ggplot2)
+library(dplyr)
+library(viridis)
 ```
 
 List all the GOT characters.
@@ -67,17 +69,22 @@ char_table
 ```
 Plot the results.
 
+
+
+
 ```r
-ggplot(char_table, aes(name, value)) +
-  geom_col(aes(fill = value)) +
-  coord_flip() +
+ggplot(char_table, aes(factor(name, level = order_vector), value)) +
+  geom_col(aes(fill = factor(name, level = order_vector))) +
   ggtitle("Number of aliases of each character") +
-  theme_light()
+  ylab("Number of aliases") + 
+  xlab("Character Name") +
+  scale_fill_viridis(discrete = TRUE) +
+  theme_light() +
+  theme(legend.position = "none") +
+  coord_flip()
 ```
 
-![](github_test_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
-
-
+![](github_test_files/figure-html/Bar Chart-1.png)<!-- -->
 
 
 The end.
