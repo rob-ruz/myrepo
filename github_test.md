@@ -3,33 +3,31 @@ GitHub test
 Roberto Ruz Campos
 23/6/2019
 
-## R Markdown
+This is my first GitHub experience\!
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+Loaad required libraries
 
 ``` r
-summary(cars)
+library(repurrrsive)
+library(purrr)
 ```
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+List all the GOT characters.
 
-## Including Plots
+``` r
+my_characters <- map_chr(got_chars, "name")
+my_characters
+```
 
-You can also embed plots, for example:
+    ##  [1] "Theon Greyjoy"      "Tyrion Lannister"   "Victarion Greyjoy" 
+    ##  [4] "Will"               "Areo Hotah"         "Chett"             
+    ##  [7] "Cressen"            "Arianne Martell"    "Daenerys Targaryen"
+    ## [10] "Davos Seaworth"     "Arya Stark"         "Arys Oakheart"     
+    ## [13] "Asha Greyjoy"       "Barristan Selmy"    "Varamyr"           
+    ## [16] "Brandon Stark"      "Brienne of Tarth"   "Catelyn Stark"     
+    ## [19] "Cersei Lannister"   "Eddard Stark"       "Jaime Lannister"   
+    ## [22] "Jon Connington"     "Jon Snow"           "Aeron Greyjoy"     
+    ## [25] "Kevan Lannister"    "Melisandre"         "Merrett Frey"      
+    ## [28] "Quentyn Martell"    "Samwell Tarly"      "Sansa Stark"
 
-![](github_test_files/figure-gfm/pressure-1.png)<!-- -->
-
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+The end.
