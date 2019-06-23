@@ -1679,16 +1679,16 @@ my_characters</code></pre>
 <pre class="r"><code>got &lt;- set_names(got_chars, my_characters)
 char_table &lt;- got %&gt;% 
   map_dbl(~length(.x[[&quot;aliases&quot;]])) %&gt;% 
-  enframe()
+  enframe(name = &quot;character&quot;, value = &quot;aliases&quot;)
 char_table</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Theon Greyjoy","2":"4"},{"1":"Tyrion Lannister","2":"11"},{"1":"Victarion Greyjoy","2":"1"},{"1":"Will","2":"1"},{"1":"Areo Hotah","2":"1"},{"1":"Chett","2":"1"},{"1":"Cressen","2":"1"},{"1":"Arianne Martell","2":"1"},{"1":"Daenerys Targaryen","2":"11"},{"1":"Davos Seaworth","2":"5"},{"1":"Arya Stark","2":"16"},{"1":"Arys Oakheart","2":"1"},{"1":"Asha Greyjoy","2":"2"},{"1":"Barristan Selmy","2":"5"},{"1":"Varamyr","2":"3"},{"1":"Brandon Stark","2":"3"},{"1":"Brienne of Tarth","2":"3"},{"1":"Catelyn Stark","2":"5"},{"1":"Cersei Lannister","2":"0"},{"1":"Eddard Stark","2":"3"},{"1":"Jaime Lannister","2":"4"},{"1":"Jon Connington","2":"1"},{"1":"Jon Snow","2":"8"},{"1":"Aeron Greyjoy","2":"2"},{"1":"Kevan Lannister","2":"1"},{"1":"Melisandre","2":"5"},{"1":"Merrett Frey","2":"1"},{"1":"Quentyn Martell","2":"4"},{"1":"Samwell Tarly","2":"7"},{"1":"Sansa Stark","2":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["character"],"name":[1],"type":["chr"],"align":["left"]},{"label":["aliases"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Theon Greyjoy","2":"4"},{"1":"Tyrion Lannister","2":"11"},{"1":"Victarion Greyjoy","2":"1"},{"1":"Will","2":"1"},{"1":"Areo Hotah","2":"1"},{"1":"Chett","2":"1"},{"1":"Cressen","2":"1"},{"1":"Arianne Martell","2":"1"},{"1":"Daenerys Targaryen","2":"11"},{"1":"Davos Seaworth","2":"5"},{"1":"Arya Stark","2":"16"},{"1":"Arys Oakheart","2":"1"},{"1":"Asha Greyjoy","2":"2"},{"1":"Barristan Selmy","2":"5"},{"1":"Varamyr","2":"3"},{"1":"Brandon Stark","2":"3"},{"1":"Brienne of Tarth","2":"3"},{"1":"Catelyn Stark","2":"5"},{"1":"Cersei Lannister","2":"0"},{"1":"Eddard Stark","2":"3"},{"1":"Jaime Lannister","2":"4"},{"1":"Jon Connington","2":"1"},{"1":"Jon Snow","2":"8"},{"1":"Aeron Greyjoy","2":"2"},{"1":"Kevan Lannister","2":"1"},{"1":"Melisandre","2":"5"},{"1":"Merrett Frey","2":"1"},{"1":"Quentyn Martell","2":"4"},{"1":"Samwell Tarly","2":"7"},{"1":"Sansa Stark","2":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Plot the results.</p>
-<pre class="r"><code>ggplot(char_table, aes(factor(name, level = order_vector), value)) +
-  geom_col(aes(fill = factor(name, level = order_vector))) +
+<pre class="r"><code>ggplot(char_table, aes(factor(character, level = order_vector), aliases)) +
+  geom_col(aes(fill = factor(character, level = order_vector))) +
   ggtitle(&quot;Number of aliases of each character&quot;) +
   ylab(&quot;Number of aliases&quot;) + 
   xlab(&quot;Character Name&quot;) +

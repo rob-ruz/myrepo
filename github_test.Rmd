@@ -33,21 +33,21 @@ How many nicknames each character have?
 got <- set_names(got_chars, my_characters)
 char_table <- got %>% 
   map_dbl(~length(.x[["aliases"]])) %>% 
-  enframe()
+  enframe(name = "character", value = "aliases")
 char_table
 ```
 
 Plot the results.
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 order_vector <- char_table %>% 
-  arrange(value) %>% 
-  .$name
+  arrange(aliases) %>% 
+  .$character
 ```
 
 
 ```{r Bar Chart, message=FALSE}
-ggplot(char_table, aes(factor(name, level = order_vector), value)) +
-  geom_col(aes(fill = factor(name, level = order_vector))) +
+ggplot(char_table, aes(factor(character, level = order_vector), aliases)) +
+  geom_col(aes(fill = factor(character, level = order_vector))) +
   ggtitle("Number of aliases of each character") +
   ylab("Number of aliases") + 
   xlab("Character Name") +
