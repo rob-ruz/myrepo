@@ -31,9 +31,11 @@ my_characters
 How many nicknames each character have?
 ```{r}
 got <- set_names(got_chars, my_characters)
-char_table <- got %>% 
-  map_dbl(~length(.x[["aliases"]])) %>% 
+
+char_table <- got %>%
+  map_dbl(~ length(.x[["aliases"]])) %>%
   enframe(name = "character", value = "aliases")
+
 char_table
 ```
 
@@ -47,16 +49,15 @@ order_vector <- char_table %>%
 
 ```{r Bar Chart, message=FALSE, fig.align='center'}
 ggplot(char_table, aes(factor(character, level = order_vector), aliases)) +
-  geom_col(aes(fill = factor(character, level = order_vector))) +
+  geom_col(aes(fill = aliases), show.legend = FALSE) +
+  geom_text(aes(label = aliases), nudge_y = 0.25) +
+  labs(x = NULL, y = NULL) +
+  scale_y_continuous(breaks = NULL) +
   ggtitle("Number of aliases of each character") +
-  ylab("Number of aliases") + 
-  xlab("Character Name") +
-  scale_fill_viridis(discrete = TRUE) +
+  scale_fill_viridis(option = "C") +
   dark_theme_light() +
-  theme(legend.position = "none") +
   coord_flip()
 
 ```
-
 
 The end.
